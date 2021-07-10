@@ -14,11 +14,11 @@ Here are the learnings and my notes.
 - Specifying correct `passthroughBehavior` is important for the `mock` integration.
   - The `NEVER` option means that if no mapping templates for this step were defined, the request will be rejected with 415 statusCode.
 - I'm not actually sure what the `requestTemplate` is all about. If it's about the data transformation, why do I need to return a `statusCode` field from it??
-  - At first I though that the `statusCode` is implied for any kind of VTL transformation, but that does not seem to be the case
+  - At first I though that the `statusCode` is implied for any kind of VTL transformation, but that does not seem to be the case.
   - I do not have any better explanation that this is a synthetic [requirement imposed by the AWS](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-mock-integration.html#how-to-mock-integration-request-examples)
 - I have the same feelings towards the `methodResponse` parameter. I've already specified the response for the integration. Why would I need to specify an `{statusCode: "200"}` for that?
 
-  - The apparent argument is that the `methodResponse` is the public interface that your `integrationResponse` has to satisfy.
+  - Apparently the argument is that the `methodResponse` is the public interface that your `integrationResponse` has to satisfy.
     This is how [Alex explains it in his blog post about APIGW](https://www.alexdebrie.com/posts/api-gateway-elements/#defining-status-codes-in-method-responses)
 
 - WAF _WebACL_ has to be of type _Regional_ to be used with APIGW. This applies to both the classic and the v2 version of the service.
@@ -27,7 +27,7 @@ Here are the learnings and my notes.
 - You attach the _WebACL_ to the stage of the API, not the whole API
 
 - With the APIGW REST API + CloudFront, the WAF can be associated with either the API itself or the CloudFront distribution.
-  Of course, nothing is stopping you from attaching the WAF to both of the services.
+  Of course, nothing is stopping you from attaching the WAF to both of the services. Having said that, you would need to create 2 _WebACLs_ for that as they have to be of different types for each service.
 
 ## WAF with APIGW HTTP API
 
